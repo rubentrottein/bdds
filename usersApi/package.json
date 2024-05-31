@@ -1,0 +1,22 @@
+{
+  "name": "usersapi",
+  "version": "1.0.0",
+  "description": "Dans le cadre d'un petit exo : Vous allez devoir réaliser une application simple qui permet de gérer des utilisateurs avec des informations de base ( nom et email)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "users"
+  ],
+  "author": "mistertea.fr",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.2"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0"
+  }
+}

@@ -1,0 +1,8 @@
+
+.bearList{
+    display: flex;
+    justify-content: space-around;
+}
+.bear-item:{
+    background: black;
+}
