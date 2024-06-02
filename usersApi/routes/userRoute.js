@@ -1,41 +1,24 @@
-const User = require("../models/UserModel");
-const { allUsers, createUser } = require("../controllers/UserController");
-
 const userRouter = require("express").Router();
+const { getAllUsers, createUser, getUserById, deleteUserById, editUserById} = require("../controllers/UserController");
+/** Correction */
+const { getAllUsersMySql, createUserMySql, getUserByIdMySql, deleteUserByIdMySql, editUserByIdMySql } = require("../controllers/UserControllerMySql");
+/** Perso*
+const { getAllUsersMySql, createUserMySql, getUserByIdMySql } = require("../controllers/userControllerMySqlPerso");
 
-userRouter.get('/all', allUsers);
-
+/** Routes */
+userRouter.get('/all', getAllUsers);
+userRouter.get('/sql/all', getAllUsersMySql);
+/**/
 userRouter.post('/new', createUser);
+userRouter.post('/sql/new', createUserMySql);
 
-userRouter.get('/:id/show',async (req, res) =>{
-    try {
-        const userToFind = await User.findOne({_id: req.params.id});
-        res.json({message:'Found User : ', user: userToFind});
-    } catch (error) {
-        res.json({message:'User not found', error});
-    }
-})
+userRouter.get('/:id/show', getUserById);
+userRouter.get('/sql/:id/show', getUserByIdMySql);
 
-userRouter.delete('/:id/destroy',async (req, res) =>{
-    try{
-        const userToDelete = await User.findOneAndDelete({_id: req.params.id }); 
-        res.send('Deletion of ' + userToDelete);
-    } catch (error){
-        res.json({ message : 'User was not deleted ', error } );
-    }
-})
+userRouter.delete('/:id/destroy', deleteUserById);
+userRouter.delete('/sql/:id/destroy', deleteUserByIdMySql);
 
-userRouter.put('/:id/edit',async (req, res) =>{
-    try{
-        const userToUpdate = await User.findOneAndUpdate({_id: req.params.id }, req.body, 
-        {
-            new: true,
-            runValidators: true,
-        })
-        res.json({ message : 'User is now Updated', user: userToUpdate } );
-    } catch (error){
-        res.json({ message : 'No Update to the User ', error } );
-    }
-})
+userRouter.put('/:id/edit',editUserById)
+userRouter.put('/sql/:id/edit',editUserByIdMySql)
 
 module.exports = userRouter;

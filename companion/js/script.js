@@ -1,6 +1,6 @@
 const bearList = document.querySelector(".bearList");
 
-// Use CORS middleware
+// On utilise le middleware CORS dans le backend
 
 const getData = async () => {
     try {
@@ -12,6 +12,7 @@ const getData = async () => {
         return [];
     }
 };
+/**/
 const deleteData = async (bear) => {
     try {
         const response = await fetch(`http://localhost:3456/api/bears/${bear.id}/delete`);
@@ -33,10 +34,10 @@ const editData = async (bear) => {
         return [];
     }
 };
-
+/** */
 const updateBearList = async () => {
     const data = await getData();
-
+    /*
     // Assuming `data` is an array and you want to log and display its contents.
     console.log(data[1]);
 
@@ -59,12 +60,37 @@ const updateBearList = async () => {
         <a type='button' class='${bear.id}'>edit<a/>
         ${document.querySelectorAll(`.${bear.id}`)[0].addEventListener("click", deleteData(`${bear}`))};
         ${document.querySelectorAll(`.${bear.id}`)[1].addEventListener("click", editData(`${bear}`))};
+        // Generate the HTML for the bear list.
+        bearList.innerHTML = data.map(createBearItemHTML).join('');
     */
-    // Generate the HTML for the bear list.
-    bearList.innerHTML = data.map(createBearItemHTML).join('');
+   
+    //DOM Injection
+    const fragment = document.createDocumentFragment();
+    const createBearNodeHTML = (bear) => {
+        let figure = document.createElement("figure");
+        let img = document.createElement("img");
+            img.src=`assets/${bear.image}`;
+            img.alt=`Image de ${bear.name} le ${bear.type}`;
+        let figcaption = document.createElement("figcaption");
+        let h2 = document.createElement("h2");
+            h2.innerHTML = bear.name;
+        let p = document.createElement("p");
+            p.innerHTML = bear.type;
+        let div = document.createElement("div");
+            let erase = document.createElement("button");
+                erase.innerHTML = "erase";
+                erase.addEventListener("click", ()=>{deleteData(bear)});
+            let edit = document.createElement("button");
+                edit.innerHTML = "edit";
+                edit.addEventListener("click", ()=>{editData(bear)});
+        div.append(erase, edit);
+        figcaption.append(h2, p, div);
+        figure.append(img, figcaption);
+        fragment.append(figure);
+    };
+    data.map(bear => createBearNodeHTML(bear));
+    bearList.append(fragment);
 };
 
 // Call the function to update the bear list.
 updateBearList();
-
-//ours andin
