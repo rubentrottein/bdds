@@ -3,7 +3,8 @@ const app = express();
 const port = 3434;
 const mongoose = require("mongoose");
 const cors = require('cors');
-
+const User = require("./models/UserModel");
+const { createUser } = require("./controllers/UserController");
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
@@ -55,8 +56,8 @@ dbPromise()
 //mongoDb Connection
 main().catch(err => console.log(err));
 async function main(){
-    await mongoose.connect('mongodb://localhost:27017/User_db');
-    console.log("[DATABASE] MongoDb --Users-- is connected");
+  await mongoose.connect('mongodb://localhost:27017/User_db');
+  console.log("[DATABASE] MongoDb --Users-- is connected");
 }
 /**/
 

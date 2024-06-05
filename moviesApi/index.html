@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="https://mistertea.fr/selene/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Movies Api</h1>
+        <nav>
+            <a href="http://localhost:3477/api/movies/videos">Films</a>
+            <a href="http://localhost:3477/api/movies/categories">Catégories</a>
+            <a href="http://localhost:3477/api/movies/users">Utilisateurs</a>
+            <a href="http://localhost:3477/api/movies/login">Log In</a>
+            <a href="http://localhost:3477/api/movies/logout">Log Out</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Bienvenue!</h2>
+        <section id="movies">
+            <h3>EndPoints</h3>
+            <article class="moviesList">
+                
+            </article>
+        </section>
+    </main>
+    <footer>
+        <h3>Crédits</h3>
+        <p>Pellicules Image par <a href="https://pixabay.com/fr/users/kolchev-3975537/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7698942">Hennadii Kolchev</a> de <a href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7698942">Pixabay</a></p>
+        <p>Tablette Image par <a href="https://pixabay.com/fr/users/yousafbhutta-2933897/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7025900">yousafbhutta</a> de <a href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7025900">Pixabay</a></p>
+    </footer>
+    <script>
+        const moviesSection = document.querySelector(".moviesList");
+
+        const getData = async (endpoint) => {
+            try {
+                const response = await fetch(`http://localhost:3477/api/movies/${endpoint}`);
+                const dataSet = await response.json();
+                return dataSet;
+            } catch (error) {
+                console.error("Error fetching the data:", error);
+                return [];
+            }
+        };
+        
+    (async function displayData(){
+
+        const data = await getData("videos/all");
+        for (let movie of data){
+            moviesSection.innerHTML+=`
+            <figure>
+                <img src="assets/img/${movie.image}" alt="Affiche de film">
+                <figcaption>
+                    <h3>${movie.name}</h3>
+                    <p>${movie.style}</p>
+                </figcaption>
+            </figure>
+        `;
+            }
+    })()
+        </script>
+    </body>
+</html>

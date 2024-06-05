@@ -1,0 +1,40 @@
+
+.moviesList{
+    display: flex;
+    min-height: 50dvh;
+}
+.moviesList img{
+    width: 20vh;
+}
+.moviesList figure{
+    min-height: 35dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1em auto;
+    padding: 1em;
+    background: rgba(255,255,255,.6);
+    min-width: 22%;
+    border-radius: 10px;
+}
+body{
+    background: url("../bg/bg2.jpg") fixed no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+footer{
+    background: black;
+    color: white;
+    position: fixed;
+    padding: 1em;
+    width: 100%;
+    opacity: .5;
+    bottom:-4em;
+    min-height: 5em;
+    transition: .5s;
+}
+footer:hover{
+    bottom:0;
+    opacity: 1;
+}
