@@ -1,15 +1,14 @@
 package com.mistertea.fr.movies.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection= "Movie")
 public class Movie {
+
     @Id
-    @GeneratedValue
-    private Long id;
+    private ObjectId id;
 
     String name;
     Category category;
@@ -17,6 +16,14 @@ public class Movie {
 
     String description;
     String image;
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
