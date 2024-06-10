@@ -3,6 +3,7 @@ package com.mistertea.fr.movies.models;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Document(collection= "User")
 public class User {

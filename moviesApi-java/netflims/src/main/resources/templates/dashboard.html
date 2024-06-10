@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="css/dashboard.css">
+    </head>
+    <body>
+        <header th:insert="~{fragments/header.html :: header}"></header>
+        <main>
+
+            <section>
+                <h2>Liste des utilisateurs</h2>
+                <table>
+                    <tr>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Email</th>
+                    </tr>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.email}"></td>
+                    </tr>
+                </table>
+            </section>
+        </main>
+    </body>
+</html>

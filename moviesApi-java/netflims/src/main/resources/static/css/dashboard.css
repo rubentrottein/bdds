@@ -1,0 +1,37 @@
+*{
+    font-family: monospace;
+    margin:0;
+}
+body{
+    box-sizing: border-box;
+}
+header{
+    position: fixed;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100dvh;
+    width: 12vw;
+    background: radial-gradient(black, #111);
+    color: tomato;
+}
+nav{
+    height:70dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2dvmax;
+}
+nav a{
+    text-decoration: none;
+    color: tomato;
+}
+main{
+    width: 70%;
+    margin:auto;
+}
+nav aside a:first-of-type{
+    display: block;
+}

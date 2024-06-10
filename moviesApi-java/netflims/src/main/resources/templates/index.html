@@ -8,43 +8,39 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <header>
-            <h1>NETFLIMS</h1>
-            <nav>
-                <a href="#home">Accueil</a>
-                <a href="#movies">Films</a>
-                <a href="#categories">Catégories</a>
-            </nav>
-            <a type=button href="/login">Login</a>
-            <a type=button href="/logout">LogOut</a>
-        </header>
+        <header th:replace="~{fragments/header.html :: header}"></header>
         <main>
-            <section id="home">
-                <article>
-                    <h2>NetFlims</h2>
-                </article>
+            <section id="categories" th:if="@{/categories}">
+                <h2>Catégories</h2>
+                <ul th:each="categorie : ${categories}">
+                    <li th:text="${categorie.name}"></li>
+                </ul>
             </section>
             <section id="movies" th:if="@{/videos}">
                 <h2>Vidéos</h2>
-                <article th:each="video : ${videos}">
-                    <figure>
-                        <img th:src="@{${'img/' + video.image}}" th:alt="@{${'Affiche de ' + video.name}}">
-                        <figcaption>
-                            <h3 th:text="${video.name}"></h3>
-                            <i th:text="${video.description}"></i>
-                        </figcaption>
-                    </figure>
+                <article >
+                        <figure th:each="video : ${videos}">
+                            <img th:src="@{${'img/' + video.image}}" th:alt="@{${'Affiche de ' + video.name}}">
+                            <figcaption>
+                                <h3 th:text="${video.name}"></h3>
+                                <i th:text="${video.description}"></i>
+                                <i th:text="${video.staticId}"></i>
+                            </figcaption>
+                            <a th:href="@{'/videos/'+${video.staticId}}">Détails(dynamique)</a>
+                            <a th:href="@{'/videos/66603c5c9cbe7c10f3d37530' }">Détails</a>
+                        </figure>
                 </article>
-            </section>
-            <section id="categories" th:if="@{/categories}">
-                <h2>Catégories</h2>
-                <article th:each="categorie : ${categories}">
-                    <div th:text="${categorie.name}"></div>
+                <article>
+                    <!--
+                    <form th:action="@{/addMovie}" th:object="${movie}" method="post">
+                        <label for="name">Nom du film
+                            <input type="text" name="name" id="name" th:fields="*{name}">
+                        </label>
+                    </form>
+                    -->
                 </article>
             </section>
         </main>
-        <footer>
-            <p>&copy; mistertea.fr - netflims</p>
-        </footer>
+        <footer th:replace="~{fragments/footer.html :: footer}"></footer>
     </body>
 </html>

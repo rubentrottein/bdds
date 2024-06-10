@@ -1,0 +1,25 @@
+#movies article{
+    display: flex;
+    justify-content: space-around;
+}
+#movies figure{
+    max-width: 30%;
+}
+
+#categories ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+    padding: 1em;
+}
+li{
+    font-family: monospace;
+    color: beige;
+    font-size: 1.5em;
+    margin: .5em;
+    border-radius: 1em;
+    background: firebrick;
+    padding: .5em;
+
+}

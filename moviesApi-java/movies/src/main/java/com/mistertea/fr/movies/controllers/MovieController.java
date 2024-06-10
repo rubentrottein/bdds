@@ -2,6 +2,7 @@ package com.mistertea.fr.movies.controllers;
 
 import com.mistertea.fr.movies.models.Movie;
 import com.mistertea.fr.movies.services.MovieService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,11 @@ public class MovieController {
     @GetMapping("/movies")
     public List<Movie> getMovies(){
         return movieService.getAllMovies();
+    }
+
+    @GetMapping("/movie/get/{id}")
+    public Movie getMovie(@PathVariable String id){
+        return movieService.getMovieById(id);
     }
 
     @PostMapping("/movies/new")
